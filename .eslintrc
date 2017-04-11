@@ -9,16 +9,17 @@
     }
   },
   "parserOptions": {
-    "ecmaVersion": 7,
+    "ecmaVersion": 8,
     "sourceType": "module",
+    "allowImportExportEverywhere": true,
     "ecmaFeatures": {
-      "jsx": true,
       "experimentalObjectRestSpread": true
     }
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6" : true
   },
   "plugins": [
     "require-path-exists",
@@ -36,6 +37,7 @@
     "arrow-body-style": 0,
     "import/no-webpack-loader-syntax": 0,
     "import/first": 0,
+    "jsx-a11y/label-has-for": 0,
     "comma-dangle": ["error", "only-multiline"],
     "func-names": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]

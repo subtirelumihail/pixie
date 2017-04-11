@@ -20,6 +20,8 @@ const asyncRoute = (getComponent) => {
           if (this.mounted) {
             this.setState({ Component });
           }
+        }).catch((error) => {
+          throw new Error(error);
         });
       }
     }
@@ -38,7 +40,7 @@ const asyncRoute = (getComponent) => {
       if (Component !== null) {
         return <Component {...this.props} />;
       }
-      return null; // or <div /> with a loading spinner, etc..
+      return <div>Loading</div>; // or <div /> with a loading spinner, etc..
     }
   };
 };

@@ -14,7 +14,7 @@ module.exports = function (env) {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
+        'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       new webpack.LoaderOptionsPlugin({
         minimize: true,
@@ -39,8 +39,8 @@ module.exports = function (env) {
         name: 'manifest'
       }),
       new webpack.NormalModuleReplacementPlugin(
-        /^\.\/Routes$/,
-        './RoutesAsync'
+        /^(.*)Routes.js$/,
+        'RoutesAsync.js'
       )
     ]
   });

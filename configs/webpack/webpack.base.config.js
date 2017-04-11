@@ -20,6 +20,9 @@ module.exports = function (env) {
         layouts: path.resolve(__dirname, `${ROOT.SOURCE}/layouts`),
         routes: path.resolve(__dirname, `${ROOT.SOURCE}/routes`),
         utils: path.resolve(__dirname, `${ROOT.SOURCE}/utils`),
+        api: path.resolve(__dirname, `${ROOT.SOURCE}/api`),
+        store: path.resolve(__dirname, `${ROOT.SOURCE}/store`),
+        lib: path.resolve(__dirname, `${ROOT.SOURCE}/lib`),
         reducers: path.resolve(__dirname, `${ROOT.SOURCE}/reducers`)
       }
     },
@@ -34,7 +37,7 @@ module.exports = function (env) {
           failOnError: env === 'prod',
         }
       }, {
-        test: /\.js$/,
+        test: /\.js?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }, {

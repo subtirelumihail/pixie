@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from './store/configureStore';
 import Root from './routes/Root';
+import '../node_modules/semantic-ui-css/semantic.css';
 
 const browserHistory = createHistory();
 const store = configureStore();

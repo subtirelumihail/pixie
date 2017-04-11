@@ -1,8 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
-import Main from 'layouts/Main';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import Main from 'layouts/Main';
+import Private from 'layouts/Private';
 
 import * as Routes from 'routes/Routes';
 
@@ -12,7 +14,9 @@ const Root = (props) => {
     <Provider store={store}>
       <Router history={history}>
         <Main>
-          <Route path="/" component={Routes.Home} />
+          <Link to="/home">Protected Page</Link>
+          <Route path="/login" component={Routes.Login} />
+          <Private path="/home" component={Routes.Home} />
         </Main>
       </Router>
     </Provider>
