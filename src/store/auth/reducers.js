@@ -1,8 +1,10 @@
 import createReducer from 'utils/redux/createReducer';
 import authTypes from './types';
+import { isAuthenticated } from 'lib/auth';
+
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: isAuthenticated(),
   isLoading: false,
   error: null,
   form: {

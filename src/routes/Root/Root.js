@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import Main from 'layouts/Main';
@@ -12,13 +13,13 @@ const Root = (props) => {
   const { store, history } = props;
   return (
     <Provider store={store}>
-      <Router history={history}>
+      <ConnectedRouter history={history}>
         <Main>
           <Link to="/home">Protected Page</Link>
           <Route path="/login" component={Routes.Login} />
           <Private path="/home" component={Routes.Home} />
         </Main>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
 };

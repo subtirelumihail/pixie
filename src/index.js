@@ -1,15 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import createHistory from 'history/createBrowserHistory';
-import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
+import createHistory from 'history/createBrowserHistory';
 import configureStore from './store/configureStore';
 import Root from './routes/Root';
 import '../node_modules/semantic-ui-css/semantic.css';
 
-const browserHistory = createHistory();
+const history = createHistory();
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
 const appContainer = document.getElementById('app');
 
 render(

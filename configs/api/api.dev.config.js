@@ -1,5 +1,5 @@
 export default {
   ENDPOINT: {
-    URL: 'http://localhost:3030'
+    URL: 'http://localhost:3000'
   }
 };

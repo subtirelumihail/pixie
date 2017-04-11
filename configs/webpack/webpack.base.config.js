@@ -33,7 +33,6 @@ module.exports = function (env) {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
-          cache: true,
           failOnError: env === 'prod',
         }
       }, {
