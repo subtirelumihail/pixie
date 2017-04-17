@@ -1,5 +1,5 @@
 import request from 'lib/request';
-import { ENDPOINT } from '../../configs/api/api.config.js';
+import { api } from 'config';
 
 /**
  * Creates CRUD endpoints from a given base URL
@@ -49,7 +49,7 @@ export const createDefaultEnpoints = endpointURL => ({
  *
  */
 export const createEndpoints = (endpoint, createCustomEndpoints) => {
-  const endpointBaseURL = `${ENDPOINT.URL}/${endpoint}`;
+  const endpointBaseURL = `${api.URL}/${endpoint}`;
   const defaultEnpoints = createDefaultEnpoints(endpointBaseURL);
   const customEndpoints = typeof createCustomEndpoints === 'function' ?
     createCustomEndpoints(endpointBaseURL) : {};

@@ -1,3 +1,5 @@
+import { getToken } from 'lib/auth';
+
 const defaultValues = {
   headers: {
     'Accept': 'application/json',
@@ -23,7 +25,14 @@ const errorHandler = (error) => {
 
 const createRequest = (method, url, options = {}) => {
   const newUrl = options.queryParams ? buildURLWithQueryParams(url, options.queryParams) : url;
-  const requestOptions = Object.assign({ method }, options, defaultValues);
+  const token = getToken();
+  const tokenHeader = token ? Object.assign(defaultValues.headers, { 'Authorization': `Bearer ${token}` }) : {};
+  const requestOptions = Object.assign(
+    { method },
+    options,
+    defaultValues,
+    tokenHeader
+  );
 
   const success = options.successCallback ? options.successCallback : successHandler;
   const error = options.errorCallback ? options.errorCallback : errorHandler;

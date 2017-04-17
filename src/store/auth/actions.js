@@ -37,9 +37,8 @@ export const loginMakeRequest = ({ username, password }) => {
           dispatch(loginFail());
         }
       })
-      .catch((error) => {
-        dispatch(loginFail());
-        throw new Error(error);
+      .catch(() => {
+        dispatch(loginFail('There was an error with the request.'));
       });
   };
 };

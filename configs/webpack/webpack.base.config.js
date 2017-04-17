@@ -15,6 +15,7 @@ module.exports = function (env) {
       extensions: ['.js', '.json', '.jsx'],
       modules: [path.join(__dirname, 'src'), 'node_modules'],
       alias: {
+        config: path.resolve(__dirname, `${ROOT.SOURCE}/config/${env}/config.js`),
         components: path.resolve(__dirname, `${ROOT.SOURCE}/components`),
         containers: path.resolve(__dirname, `${ROOT.SOURCE}/containers`),
         layouts: path.resolve(__dirname, `${ROOT.SOURCE}/layouts`),
