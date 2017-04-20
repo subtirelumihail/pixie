@@ -1,12 +1,6 @@
 #!/bin/bash
 # This is the build and run script
 
-# Install dependencys
-yarn install
-
-# Build the project
-yarn run build:prod
-
 # Build the image
 docker build -t pixie .
 
