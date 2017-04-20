@@ -5,7 +5,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json yarn.lock /usr/src/app/
 RUN npm set progress=false
 RUN npm config set registry http://registry.npmjs.org/
 RUN yarn install
