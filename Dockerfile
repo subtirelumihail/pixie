@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
-RUN npm config set registry https://registry.npmjs.org/
+RUN npm set progress=false
+RUN npm config set registry http://registry.npmjs.org/
 RUN npm install
 VOLUME /usr/src/app/node_modules
 
