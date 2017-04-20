@@ -6,7 +6,7 @@ const PORT = 3030;
 // App
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile('/build/index.html');
 });
 
