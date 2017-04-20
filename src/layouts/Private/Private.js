@@ -2,13 +2,17 @@ import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Header from 'containers/HeaderContainer';
 
 const Private = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (
       rest.isAuthenticated ? (
-        <Component {...props} />
+        <div>
+          <Header />
+          <Component {...props} />
+        </div>
       ) : (
         <Redirect
           to={{

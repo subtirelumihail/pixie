@@ -1,3 +1,4 @@
+import { mergeDeep } from 'utils/mergeDeep';
 import { getToken } from 'lib/auth';
 
 const defaultValues = {
@@ -25,13 +26,10 @@ const errorHandler = (error) => {
 
 const createRequest = (method, url, options = {}) => {
   const newUrl = options.queryParams ? buildURLWithQueryParams(url, options.queryParams) : url;
-  const token = getToken();
-  const tokenHeader = token ? Object.assign(defaultValues.headers, { 'Authorization': `Bearer ${token}` }) : {};
-  const requestOptions = Object.assign(
+  const requestOptions = mergeDeep(
     { method },
     options,
-    defaultValues,
-    tokenHeader
+    defaultValues
   );
 
   const success = options.successCallback ? options.successCallback : successHandler;
@@ -42,22 +40,35 @@ const createRequest = (method, url, options = {}) => {
     .catch(error);
 };
 
-const request = {
+const createJwtRequest = (method, url, options = {}) => {
+  const token = getToken();
+  const newOptions = token ? mergeDeep(options, { headers: { 'Authorization': `Bearer ${token}` } }) : options;
+
+  return createRequest(method, url, newOptions);
+};
+
+const generateRequest = requestMaker => ({
   get(url, options) {
-    return createRequest('GET', url, options);
+    return requestMaker('GET', url, options);
   },
 
   post(url, options) {
-    return createRequest('POST', url, options);
+    return requestMaker('POST', url, options);
   },
 
   put(url, options) {
-    return createRequest('PUT', url, options);
+    return requestMaker('PUT', url, options);
   },
 
   delete(url, options) {
-    return createRequest('DELETE', url, options);
+    return requestMaker('DELETE', url, options);
   }
-};
+});
 
-export default request;
+export const jwtRequest = generateRequest(createJwtRequest);
+export const request = generateRequest(createRequest);
+
+export default {
+  jwtRequest,
+  request
+};

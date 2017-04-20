@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import LoginForm from 'components/common/LoginForm';
 
@@ -41,5 +42,8 @@ LoginFormContainer.defaultProps = {
   location: null
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer));
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(LoginFormContainer);
 

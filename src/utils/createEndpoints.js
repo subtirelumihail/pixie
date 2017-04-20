@@ -1,4 +1,4 @@
-import request from 'lib/request';
+import { jwtRequest } from 'lib/request';
 import { api } from 'config';
 
 /**
@@ -9,11 +9,11 @@ import { api } from 'config';
  * @returns {object} the CRUD endpoints
  */
 export const createDefaultEnpoints = endpointURL => ({
-  list: () => request.get(`${endpointURL}`),
-  create: data => request.post(`${endpointURL}`, { body: data }),
-  read: id => request.get(`${endpointURL}/${id}`),
-  update: (id, data) => request.put(`${endpointURL}/${id}/update`, { body: data }),
-  delete: id => request.delete(`${endpointURL}/${id}/delete`)
+  list: () => jwtRequest.get(`${endpointURL}`),
+  create: data => jwtRequest.post(`${endpointURL}`, { body: data }),
+  read: id => jwtRequest.get(`${endpointURL}/${id}`),
+  update: (id, data) => jwtRequest.put(`${endpointURL}/${id}/update`, { body: data }),
+  delete: id => jwtRequest.delete(`${endpointURL}/${id}/delete`)
 });
 
 /**

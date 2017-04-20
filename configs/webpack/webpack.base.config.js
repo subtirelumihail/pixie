@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const { ROOT } = require('./constants');
 
 const extractCSS = new ExtractTextPlugin('[name].bundle.css');
@@ -49,7 +50,24 @@ module.exports = function (env) {
         ]
       }, {
         test: /\.scss$/,
-        loader: extractCSS.extract(['css-loader', 'sass-loader'])
+        loader: extractCSS.extract([
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer({ browsers: 'last 2 versions' })
+              ]
+            }
+          },
+          'sass-loader'
+        ])
       }, {
         test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',

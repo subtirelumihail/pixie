@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 const Main = ({ children }) => (
   <div className="main">
-    Hello
-    <hr />
     {children}
   </div>
 );

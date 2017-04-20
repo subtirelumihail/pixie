@@ -4,7 +4,12 @@ import { AppContainer } from 'react-hot-loader';
 import createHistory from 'history/createBrowserHistory';
 import configureStore from './store/configureStore';
 import Root from './routes/Root';
+
+// Import Semantic UI css
 import '../node_modules/semantic-ui-css/semantic.css';
+
+// Import our styles
+import './assets/styles/main.scss';
 
 const history = createHistory();
 const store = configureStore();

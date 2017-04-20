@@ -1,0 +1,6 @@
+.container {
+  composes: container from '../../../assets/styles/global.scss';
+  display: flex;
+}
+
+.left {}

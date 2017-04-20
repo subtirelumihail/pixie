@@ -15,7 +15,7 @@ const Root = (props) => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Main>
-          <Link to="/home">Protected Page</Link>
+          <Link to="/home">Protected Page WOW</Link>
           <Route path="/login" component={Routes.Login} />
           <Private path="/home" component={Routes.Home} />
         </Main>

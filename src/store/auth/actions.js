@@ -1,6 +1,7 @@
 import authTypes from './types';
-import request from 'lib/request';
-import { setToken } from 'lib/auth';
+import { request } from 'lib/request';
+import { setToken, removeToken } from 'lib/auth';
+import forwardTo from 'utils/forwardTo';
 import { ENDPOINT } from '../../../configs/api/api.config.js';
 
 export const loginRequest = (username, password) => ({
@@ -40,6 +41,14 @@ export const loginMakeRequest = ({ username, password }) => {
       .catch(() => {
         dispatch(loginFail('There was an error with the request.'));
       });
+  };
+};
+
+export const logout = () => {
+  removeToken();
+  forwardTo('/login');
+  return {
+    type: authTypes.LOGOUT
   };
 };
 

@@ -42,8 +42,16 @@ const loginFail = (state, { error }) => {
   };
 };
 
+const logout = (state) => {
+  return {
+    ...state,
+    isAuthenticated: false,
+  };
+};
+
 export default createReducer(initialState, {
   [authTypes.LOGIN_REQUEST]: loginRequest,
   [authTypes.LOGIN_SUCCESS]: loginSuccess,
-  [authTypes.LOGIN_FAIL]: loginFail
+  [authTypes.LOGIN_FAIL]: loginFail,
+  [authTypes.LOGOUT]: logout
 });

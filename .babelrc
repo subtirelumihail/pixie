@@ -7,5 +7,8 @@
     "stage-0",
     "flow"
   ],
-  "plugins": ["react-hot-loader/babel"]
+  "plugins": [
+    "react-hot-loader/babel",
+    ["lodash", { "id": ["lodash", "recompose"] }]
+  ]
 }
