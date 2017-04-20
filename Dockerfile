@@ -1,11 +1,13 @@
 FROM hypriot/rpi-node:latest
 
-RUN yarn install
-RUN yarn build:prod
+# Create app directory
+RUN mkdir -p /usr/src/app
 
-ADD . /src
-WORKDIR /src
+# Bundle app source
+COPY build /usr/src/app/build
+COPY server /usr/src/app
 
-EXPOSE 80
+WORKDIR /usr/src/app
 
-CMD ["node", "server/index.js"]
+EXPOSE 8080
+CMD [ "node", "index.js" ]
