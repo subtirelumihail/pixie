@@ -1,13 +1,8 @@
-FROM node:6
+FROM subtirelumihail/rpi-node
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-
-# Install yarn
-RUN cd /opt \
-    wget https://yarnpkg.com/latest.tar.gz \
-    tar zvxf latest.tar.gz
 
 # Install app dependencies
 COPY package.json yarn.lock /usr/src/app/
