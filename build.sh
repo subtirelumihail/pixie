@@ -1,12 +1,21 @@
 #!/bin/bash
 # This is the build and run script
 
+# Install dependencys
+yarn install
+
+# Build the project
+yarn run build:prod
+
 # Build the image
 docker build -t pixie .
 
-# Stop all container and remove them
-docker stop pixie-app
-docker rm pixie-app
+# Clean
+yarn run clean
 
-# Run the container
-docker run --name pixie-app -d -p 8080:3030 pixie
+echo "Please enter the tag name"
+read input_variable
+
+# Push the container
+docker tag pixie subtirelumihail/pixie:$input_variable
+docker push subtirelumihail/pixie
