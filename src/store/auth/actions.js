@@ -2,7 +2,7 @@ import authTypes from './types';
 import { request } from 'lib/request';
 import { setToken, removeToken } from 'lib/auth';
 import forwardTo from 'utils/forwardTo';
-import { ENDPOINT } from '../../../configs/api/api.config.js';
+import { api } from 'config';
 
 export const loginRequest = (username, password) => ({
   type: authTypes.LOGIN_REQUEST,
@@ -25,7 +25,7 @@ export const loginFail = error => ({
 export const loginMakeRequest = ({ username, password }) => {
   return (dispatch) => {
     dispatch(loginRequest(username, password));
-    request.post(`${ENDPOINT.URL}/login`, {
+    request.post(`${api.URL}/login`, {
       body: JSON.stringify({ username, password })
     })
       .then((res) => {

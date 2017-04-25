@@ -6,12 +6,12 @@
   "author": "Subtirelu Mihail",
   "license": "MIT",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --config configs/webpack/webpack.config.js --env=dev",
+    "start": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --config configs/webpack/webpack.config.js",
     "start:watch:dev": "node_modules/.bin/nodemon --watch configs --exec yarn run start",
     "clean": "rimraf build",
-    "build:dev": "yarn run clean && webpack --env=dev --progress --colors --config configs/webpack/webpack.config.js",
-    "build:prod": "yarn run clean && webpack --env=prod --progress --colors --config configs/webpack/webpack.config.js",
-    "build:test": "yarn run build:prod && cd build && python -m SimpleHTTPServer 8080"
+    "build:dev": "yarn run clean && NODE_ENV=dev webpack --progress --colors --config configs/webpack/webpack.config.js",
+    "build:prod": " yarn run clean && NODE_ENV=prod webpack --progress --colors --config configs/webpack/webpack.config.js",
+    "build:test": "yarn run build:prod && node server/index.js"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
@@ -51,7 +51,9 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "font-awesome": "^4.7.0",
     "history": "^4.6.1",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.4",
     "react": "^15.4.2",

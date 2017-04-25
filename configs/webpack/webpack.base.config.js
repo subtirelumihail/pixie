@@ -4,9 +4,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const { ROOT } = require('./constants');
 
-const extractCSS = new ExtractTextPlugin('[name].bundle.css');
+const extractCSS = new ExtractTextPlugin({
+  filename: '[name].bundle.css',
+  allChunks: true
+});
 
-module.exports = function (env) {
+module.exports = function () {
   return {
     output: {
       path: path.join(__dirname, `${ROOT.BUILD}`),
@@ -16,7 +19,7 @@ module.exports = function (env) {
       extensions: ['.js', '.json', '.jsx'],
       modules: [path.join(__dirname, 'src'), 'node_modules'],
       alias: {
-        config: path.resolve(__dirname, `${ROOT.SOURCE}/config/${env}/config.js`),
+        config: path.resolve(__dirname, `${ROOT.SOURCE}/config/${process.env.NODE_ENV}/config.js`),
         components: path.resolve(__dirname, `${ROOT.SOURCE}/components`),
         containers: path.resolve(__dirname, `${ROOT.SOURCE}/containers`),
         layouts: path.resolve(__dirname, `${ROOT.SOURCE}/layouts`),
@@ -35,19 +38,12 @@ module.exports = function (env) {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
-          failOnError: env === 'prod',
+          failOnError: process.env.NODE_ENV === 'prod',
         }
       }, {
         test: /\.js?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      }, {
-        test: /\.css$/,
-        loader: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
       }, {
         test: /\.scss$/,
         loader: extractCSS.extract([
@@ -67,6 +63,11 @@ module.exports = function (env) {
             }
           },
           'sass-loader'
+        ])
+      }, {
+        test: /\.css$/,
+        loader: extractCSS.extract([
+          'css-loader'
         ])
       }, {
         test: /\.(jpg|png|gif)$/,

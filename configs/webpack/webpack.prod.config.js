@@ -4,8 +4,8 @@ const { MAIN } = require('./constants');
 
 const commonConfig = require('./webpack.base.config.js');
 
-module.exports = function (env) {
-  return webpackMerge(commonConfig(env), {
+module.exports = function () {
+  return webpackMerge(commonConfig(process.env.NODE_ENV), {
     entry: {
       main: ['babel-polyfill', MAIN.INDEX] // the entry point of our app
     },
