@@ -5,5 +5,8 @@ docker pull subtirelumihail/pixie
 docker stop pixie-app
 docker rm pixie-app
 
+# Remove previous image
+docker rmi -f pixie-app
+
 # Start the service
 docker run --name pixie-app -d -p 8080:3030 pixie
